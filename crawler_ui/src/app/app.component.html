@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg toolbar">
+  <span class="iconify" data-icon="mdi:rss" data-width="40" data-height="40" style="color: #66FCF1"></span>
+  <h1>RSS Finder</h1>
+  <div class="spacer"></div>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent" aria-controls="navBarContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar($event)">
+    <span class="iconify" data-icon="fontisto:nav-icon-a" style="color: white;"></span>
+  </button> 
+  <div style="background-color: #0B0C10;" class="collapse navbar-collapse" id="navBarContent" [ngClass]="{'show': isCollapsed}">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+		    <button class="tool" (click)="changeRoute('dashboard')">Keyword</button>      
+      </li>
+      <li class="nav-item">
+        <button class="tool" (click)="changeRoute('fromUrl')">URL</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+<!-- Footer -->
+<footer>
+  <div style="margin-left: 2%;"><button class="tool" (click)="openAbout()">About</button></div>
+  <!--<div><button class="tool">Help</button></div>-->
+  <div class="spacer"></div>
+  <div style="margin-right: 2%;">©2022 Martin Pecho</div>
+</footer>
