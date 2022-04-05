@@ -1,0 +1,85 @@
+<ngb-alert [type]="typeMessage" *ngIf="message">
+  {{message}}
+</ngb-alert>
+<div class="content">
+    <!-- Resources -->
+    <h2>Search an RSS Feed for any Keywords</h2>
+    <p *ngIf="showMain">Enter keyword to search:</p>
+    <div *ngIf="showMain" class="col-md-7">
+        <form [formGroup]="keyForm">
+          <div class="form-row" style="flex-wrap: nowrap !important">
+            <input formControlName="key" type="text" class="form-control" (keyup.enter)="searchByKey()">
+            <button class="btn" style="margin-left: 2px;" (click)="searchByKey()"><span class="iconify"  data-icon="fe:search" style="color: white;"></span></button>
+          </div>
+        </form>       
+    </div>
+    <br>
+    <div *ngIf="rssList.length > 0 && !showMain && showResult" style="background-color: #C5C6C7; border-radius: 10px;display: flex;flex-direction: column;align-items: center; padding: 10px;">
+      <ul>
+        <li style="color: #1F2833; cursor: pointer; text-decoration: underline;" *ngFor="let rss of rssList"><a (click)="openRss(rss)">{{rss}}</a></li>
+      </ul>
+      <button class="btn" (click)="newKey()">Explore new Keyword</button>
+    </div>
+    <div *ngIf="rssList.length === 0 && !showMain && showResult">
+      <h3 style="color: white;">No RSS found</h3>
+      <button class="btn" (click)="newKey()">Explore new Keyword</button>
+    </div>
+    <p *ngIf="!isVerified"> --- OR ---</p>
+    <div *ngIf="!isVerified" style="background-color: #C5C6C7; border-radius: 10px;display: flex;flex-direction: column;align-items: center; padding: 10px;">
+      <h3>GET MORE WITH YOUR EMAIL ADDRESS</h3>
+      <div class="col-md-10">
+        <form [formGroup]="emailForm">
+            <input formControlName="email" type="text" class="form-control" placeholder="@" email="true" [pattern]="emailPattern">
+            <div class="text-danger" *ngIf="emailForm.controls.email.errors?.pattern || emailForm.controls.email.errors?.email"> 
+              It is not valid email address!
+            </div>
+        </form>
+      </div>
+        <br>
+        <button class="btn" (click)="submit()">Upgrade</button>
+    </div>
+
+    <div *ngIf="isVerified" class="col-md-8">
+      <form [formGroup]="proForm" *ngIf="showForm">  
+        <button type="button" class="btn" style="margin: 8px;" (click)="addNew()">Add Keyword</button>
+        <button type="button" class="btn" *ngIf="keys.length>0" [disabled]="checkDisable()" (click)="nextPrev()">Next</button>
+        <div formArrayName="keys">
+          <ng-container *ngFor="let keyInput of keys.controls; let i = index">
+            <div formGroupName="{{i}}" *ngIf="i<5">
+              <div class="form-group pad" style="display: flex;">
+                <input style="margin-right:5px;" formControlName="key" class="form-control" placeholder="{{i+1}}. Keyword"/>
+                <button class="btn" (click)="deleteGroup(i)">X</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </form>
+      <div *ngIf="!showForm">
+        <button type="button" class="btn" style="margin: 8px;"(click)="nextPrev()">Previous</button>
+        <button type="button" class="btn" (click)="searchByKeys()">Search</button>
+        <form [formGroup]="filterForm">
+          <div class="form-group">
+            <label>Choose region</label>
+            <select class="form-control" formControlName="region">
+              <option *ngFor="let region of regions"  [value]="region.key" >{{region.value}}</option>
+            </select>
+            <br>
+            <label>Choose time period</label>
+            <select class="form-control" formControlName="time">
+              <option *ngFor="let period of periods"  [value]="period.key" >{{period.value}}</option>
+            </select>
+            <br>
+            <label>Max. results (E.g. 100)</label>
+            <input type="number" class="form-control" formControlName="maximum" min="0" maximum [max]="100">
+            <div class="text-danger" *ngIf="filterForm.controls.maximum.errors?.required"> 
+              Value is required!
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+
+  
+</div>
+
+<ngx-spinner size="medium" type="timer"><p style="color: white;">Loading...</p></ngx-spinner>
