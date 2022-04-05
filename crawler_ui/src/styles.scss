@@ -1,0 +1,170 @@
+/* You can add global styles to this file, and also import other style files */
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 20px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #1F2833 !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+  div{
+    color: #C5C6C7;
+  }
+  h2{
+    color: #66FCF1;
+  }
+  h3{
+    color:#1F2833;
+  }
+
+  p {
+    margin: 0;
+    color:#C5C6C7;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #0B0C10;
+    color: white;
+    font-weight: 600;
+  }
+  button.tool {
+    color: #45A29E;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+  }
+  button.tool:hover {
+    color: #C5C6C7;
+  }
+
+  button.btn {
+    background-color: #1F2833;
+    color: white;
+  
+  }
+
+  .pad{
+    padding: 8px 0px 8px;
+  }
+
+  button.btn:hover:enabled {
+    background-color: #45A29E;
+    color: white;
+  }
+  
+  button.btn:hover:disabled{
+    color: #1F2833;
+  }
+
+  .navbar-collapse {
+    flex-grow: 0 !important;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 60px 60px;
+    max-width: 900px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  th,td {
+    color: white;
+  }
+
+  .grayC{
+    color: #1F2833;
+  }
+
+  .blackC{
+    color:#0B0C10;
+  }
+
+  div.table-content{
+    display: flex;
+    margin: 30px auto 32px;
+    padding: 5% 5%;
+    max-width: 1100px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  footer {
+    display:flex !important;
+    background-color: #0B0C10;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    width: 100%;
+    justify-content:center;
+    align-items:center;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  ngb-pagination ul .page-item .page-link {
+    color: white;
+    background-color: #1F2833;
+  }
+  ngb-pagination ul .page-item a:hover {
+    color: white;
+    background-color: #45A29E;
+  }
+  ngb-pagination .page-item.disabled .page-link{
+    background-color: #1F2833;
+    color: #1F2833;
+  }
+  ngb-pagination ul .page-item.active .page-link {
+    color: #1F2833;
+    background-color: #66FCF1;
+    border-color: #1F2833;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
