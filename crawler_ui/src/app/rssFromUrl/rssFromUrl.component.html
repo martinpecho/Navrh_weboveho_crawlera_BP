@@ -1,0 +1,28 @@
+<ngb-alert [type]="typeMessage" *ngIf="message">{{message}}</ngb-alert>
+<div class="content">
+    <h2 >Search an RSS Feed for any Website</h2>
+    <p>Enter url to search:</p>
+    <div class="col-md-10">
+        <form [formGroup]="urlForm">
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn">http(s)://</button>
+                </div>
+                <div class="col-md-10">
+                    <input formControlName="url" type="text" class="form-control" (keyup.enter)="getFromUrl()">
+                </div>
+            </div>
+        </form>
+    </div>
+    <button class="btn" style="margin: 8px;" (click)="getFromUrl()">Submit</button>
+    <div style="padding: 5%;" class="row">
+        <div *ngIf="rss" class="col">
+            <h4>RSS: <a style="cursor: pointer; text-decoration: underline;" (click)="openRss(rss)">{{rss}}</a></h4>
+        </div>
+        <div *ngIf="rss==null" class="col">
+            <h4>RSS could not be found.</h4>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner size="medium" [type]="'timer'"></ngx-spinner>
